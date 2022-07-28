@@ -1,9 +1,12 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import LoginCard from "./components/LoginCard";
+import LoginPage from "./page/LoginPage";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: {
+      main: "rgba(226, 115, 18, 0.86)",
+    },
   },
 });
 
@@ -12,7 +15,7 @@ function App(): JSX.Element {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      <LoginCard />
+      <LoginPage />
     </ThemeProvider>
   );
 }
