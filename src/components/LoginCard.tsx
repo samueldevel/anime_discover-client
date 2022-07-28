@@ -1,67 +1,60 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Card, Grid, IconButton, InputAdornment } from "@mui/material";
-import { Box } from "@mui/system";
-import React from "react";
-import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import KeyIcon from "@mui/icons-material/Key";
-import LoginField from "./LoginField";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Button, Card, CardProps, Grid, Link, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Box, Theme } from "@mui/system";
+import LoginForm from "./LoginForm";
 
-interface State {
-  username: string;
-  password: string;
-  showPassword: boolean;
+function MyCard({ children, ...props }: CardProps): JSX.Element {
+  return (
+    <Card
+      sx={{
+        width: {
+          xs: "500px",
+          sm: "400px",
+          md: "400px",
+          lg: "500px",
+          xl: "600px",
+        },
+        height: {
+          xs: "60vh",
+          sm: "70vh",
+          md: "70vh",
+        },
+      }}
+      {...props}
+    >
+      {children}
+    </Card>
+  );
 }
 
-const placeholders: { username: string; password: string } = {
-  username: "Username or Email",
-  password: "Password",
-};
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
+}));
 
 function LoginCard(): JSX.Element {
-  const [values, setValues] = React.useState<State>({
-    username: "",
-    password: "",
-    showPassword: false,
-  });
-
-  const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({ ...values, [prop]: event.target.value });
-    };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
+  const classes = useStyles();
 
   return (
     <Box
+      className={classes.root}
       display="flex"
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
     >
-      <Card
-        sx={{
-          width: {
-            xs: "300px",
-            sm: "400px",
-            md: "450px",
-            lg: "550px",
-            xl: "600px",
-          },
-          height: "90vh",
-        }}
-      >
+      <MyCard>
+        <LoginForm />
+      </MyCard>
+      <MyCard>
         <Grid
           container
           alignItems="center"
-          pt={10}
+          pt={5}
           spacing={4}
           direction="column"
           sx={{
@@ -69,37 +62,50 @@ function LoginCard(): JSX.Element {
             minWidth: "100%",
           }}
         >
-          <Grid width="60%" item>
-            <LoginField
-              startIcon={<AssignmentIndIcon />}
-              value={values.username}
-              onChange={handleChange("username")}
-              placeholder={placeholders.username}
-            />
+          <Grid width="100%" item>
+            <Box
+              maxWidth="100%"
+              display="flex"
+              flexDirection="column"
+              textAlign="center"
+              mt={7}
+              justifyContent="center"
+            >
+              <Typography fontSize="1.08rem" variant="overline">
+                Sign up and comment about your
+              </Typography>
+              <Typography fontSize="0.65rem" variant="overline">
+                favorite anime
+              </Typography>
+              <Link
+                mt={1}
+                fontSize="0.73rem"
+                variant="button"
+                color="rgba(226, 115, 18, 0.86)"
+                href="#"
+                underline="always"
+              >
+                know more
+              </Link>
+            </Box>
           </Grid>
-          <Grid width="60%" item>
-            <LoginField
-              startIcon={<KeyIcon />}
-              type={values.showPassword ? "text" : "password"}
-              value={values.password}
-              onChange={handleChange("password")}
-              placeholder={placeholders.password}
-              endAdornment={
-                <InputAdornment sx={{ paddingRight: "10px" }} position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
+          <Grid item>
+            <Box
+              maxWidth="100%"
+              display="flex"
+              flexDirection="column"
+              textAlign="center"
+              mt={7}
+              justifyContent="center"
+            >
+              <Typography fontSize="0.9rem" variant="overline">
+                Is free and easy to use.
+              </Typography>
+              <Button variant="outlined">Sign Up</Button>
+            </Box>
           </Grid>
         </Grid>
-      </Card>
+      </MyCard>
     </Box>
   );
 }

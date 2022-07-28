@@ -1,17 +1,23 @@
+@media screen and (max-width: 1200px) {
+  * {
+    font-size: 90%;
+  }
+}
+
 @media screen and (max-width: 900px) {
   * {
-    font-size: 15px;
+    font-size: 80%;
   }
 }
 
 @media screen and (max-width: 600px) {
   * {
-    font-size: 13px;
+    font-size: 90%;
   }
 }
 
 @media screen and (max-width: 400px) {
   * {
-    font-size: 10px;
+    font-size: 80%;
   }
 }

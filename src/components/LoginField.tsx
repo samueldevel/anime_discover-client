@@ -29,6 +29,7 @@ function LoginField({ startIcon, ...props }: LoginFieldProps) {
   return (
     <div>
       <OutlinedInput
+        sx={{ fontSize: "0.9rem" }}
         startAdornment={
           <InputAdornment position="start">{startIcon}</InputAdornment>
         }
