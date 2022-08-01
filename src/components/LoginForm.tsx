@@ -99,7 +99,7 @@ function LoginForm() {
           variant="button"
           color="rgba(226, 115, 18, 0.86)"
           href="#"
-          underline="always"
+          underline="hover"
         >
           Forgot Password?
         </Link>
