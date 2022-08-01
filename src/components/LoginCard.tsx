@@ -8,6 +8,7 @@ function MyCard({ children, ...props }: CardProps): JSX.Element {
   return (
     <Card
       sx={{
+        borderRadius: "0",
         width: {
           xs: "500px",
           sm: "400px",
